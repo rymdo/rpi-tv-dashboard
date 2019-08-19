@@ -1,0 +1,29 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body,
+html {
+  margin: 0px;
+  padding: 0px;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  background-color: cornflowerblue;
+}
+
+.AppSpinner {
+  background-color: beige;
+}
+
+.AppSpinner img {
+  animation: spin 10s linear infinite;
+  height: 100px;
+}
