@@ -7,16 +7,26 @@
   }
 }
 
-body,
-html {
+body {
   margin: 0px;
-  padding: 0px;
 }
 
 .App {
   display: flex;
-  justify-content: center;
-  background-color: cornflowerblue;
+  height: 100vh;
+  flex-direction: column;
+  background-color: gray;
+}
+
+.ContainerTopBar {
+  flex: 1;
+  flex-direction: column;
+}
+
+.ContainerMain {
+  flex: 20;
+  flex-direction: column;
+  background-color: white;
 }
 
 .AppSpinner {
