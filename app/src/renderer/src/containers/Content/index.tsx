@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import { CardContainer } from './../CardContainer';
-import { CardStandard } from '../../components/Card/Standard';
+import { YouTubeCard } from './../../components/Card/YouTubeCard';
 
 const styles: { [key: string]: React.CSSProperties } = {
   containerCards: {
@@ -9,6 +8,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: 'row',
     padding: 5,
     backgroundColor: 'red',
+    height: '100%',
   },
   containerCard: {
     flex: 1,
@@ -19,16 +19,14 @@ const styles: { [key: string]: React.CSSProperties } = {
 };
 
 export class Content extends Component {
-  render() {
+  render(): JSX.Element {
     return (
       <div style={styles.containerCards}>
         <CardContainer style={styles.containerCard}>
-          <CardStandard />
-          <CardStandard />
+          <YouTubeCard videoId={'Z7o9pbPHu0k'} start={10} />
         </CardContainer>
         <CardContainer style={styles.containerCard}>
-          <CardStandard />
-          <CardStandard />
+          <YouTubeCard videoId={'Z7o9pbPHu0k'} start={10} />
         </CardContainer>
       </div>
     );
