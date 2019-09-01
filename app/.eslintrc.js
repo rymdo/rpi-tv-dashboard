@@ -9,6 +9,7 @@ module.exports = {
   ],
   plugins: ['react'],
   rules: {
+    '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     'node/no-unsupported-features/es-syntax': 'off',
     'react/prop-types': ['error', { skipUndeclared: true }],
