@@ -4,6 +4,8 @@
   "main": "main.js",
   "scripts": {
     "dev": "source .env.development && electron-webpack dev",
+    "dev:single": "source .env.dev.test.single && electron-webpack dev",
+    "dev:dual": "source .env.dev.test.dual && electron-webpack dev",
     "compile": "electron-webpack && cp -R dist/main/* dist/ && cp -R dist/renderer/* dist/",
     "start": "yarn compile && electron dist/main.js",
     "dist": "yarn compile && electron-builder",

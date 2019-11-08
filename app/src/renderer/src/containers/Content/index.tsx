@@ -6,20 +6,27 @@ import { YouTubeCard } from './../../components/Card/YouTubeCard';
 import { CardContainer } from './../CardContainer';
 
 const styles: { [key: string]: React.CSSProperties } = {
-  containerCards: {
+  containerCardsLandscape: {
     display: 'flex',
     flexDirection: 'row',
     padding: 5,
     height: '100%',
   },
+  containerCardsPortrait: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 5,
+    height: '100%',
+  },
   containerCard: {
     flex: 1,
-    margin: 10,
+    margin: 50,
     borderRadius: 2,
   },
 };
 
 export interface ContentProps {
+  landscape: boolean;
   content: {
     cards: Card[];
   };
@@ -27,7 +34,13 @@ export interface ContentProps {
 export class Content extends Component<ContentProps> {
   public render(): JSX.Element {
     return (
-      <div style={styles.containerCards}>
+      <div
+        style={
+          this.props.landscape
+            ? styles.containerCardsLandscape
+            : styles.containerCardsPortrait
+        }
+      >
         {this.renderCards(this.props.content.cards)}
       </div>
     );

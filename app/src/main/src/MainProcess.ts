@@ -35,14 +35,18 @@ export class MainProcess {
 
   private createMainWindow = (): void => {
     const environment: Environment = parseEnvironmentVariables();
+
+    const width = environment.development ? 1280 : environment.width;
+    const height = environment.development ? 720 : environment.height;
+
     this.mainWindow = new MainWindow(
       {
         x: 0,
         y: 0,
         kiosk: environment.development ? false : environment.kiosk,
         frame: environment.development ? true : environment.frame,
-        width: environment.development ? 1280 : environment.width,
-        height: environment.development ? 720 : environment.height,
+        width: environment.landscape ? width : height,
+        height: environment.landscape ? height : width,
         title: environment.development
           ? `${environment.title} (DEV)`
           : environment.title,

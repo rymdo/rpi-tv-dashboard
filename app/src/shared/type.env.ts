@@ -25,6 +25,7 @@ export interface Environment {
   updateLock: boolean;
   appDataDir: string;
   userDataDir: string;
+  landscape: boolean;
   content: {
     cards: Card[];
   };

@@ -7,7 +7,6 @@ import { Environment } from '../../shared/type.env';
 import { BackgroundContainer } from './components/Background/BackgroundContainer';
 import { YouTubeCard } from './components/Card/YouTubeCard';
 import { Content } from './containers/Content';
-import { TopBar } from './containers/TopBar';
 
 interface AppState {
   ready: boolean;
@@ -38,14 +37,14 @@ export class App extends Component<{}, AppState> {
     }
     return (
       <div className="App">
-        <div className="ContainerTopBar">
-          <TopBar />
-        </div>
         <div className="ContainerMain">
           <BackgroundContainer>
             <YouTubeCard videoId={'_VHVEw2h5F0'} start={10} />
           </BackgroundContainer>
-          <Content content={this.state.environment.content} />
+          <Content
+            landscape={this.state.environment.landscape}
+            content={this.state.environment.content}
+          />
         </div>
       </div>
     );

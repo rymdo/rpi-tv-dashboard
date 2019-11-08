@@ -104,6 +104,7 @@ export function parseEnvironmentVariables(): Environment {
     updateLock: false,
     appDataDir: '',
     userDataDir: '',
+    landscape: true,
     content: {
       cards: [],
     },
@@ -152,6 +153,10 @@ export function parseEnvironmentVariables(): Environment {
     userDataDir: parseEnvString(
       process.env.ELECTRON_USER_DATA_DIR,
       defaultConfig.userDataDir
+    ),
+    landscape: parseEnvBoolean(
+      process.env.URL_LAUNCHER_LANDSCAPE,
+      defaultConfig.landscape
     ),
     content: {
       cards: parseEnvCards(),
