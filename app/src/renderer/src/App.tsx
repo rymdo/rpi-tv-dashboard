@@ -26,11 +26,14 @@ export class App extends Component<{}, AppState> {
   componentDidMount(): void {
     const currentWindow: any = remote.getCurrentWindow();
     const environment: Environment = currentWindow.environment;
-    this.setState({ ready: true, environment });
+    this.setState({ ready: true, environment: { ...environment } });
   }
 
   render(): JSX.Element {
     if (!this.state.ready) {
+      return <div></div>;
+    }
+    if (!this.state.environment) {
       return <div></div>;
     }
     return (
@@ -42,7 +45,7 @@ export class App extends Component<{}, AppState> {
           <BackgroundContainer>
             <YouTubeCard videoId={'_VHVEw2h5F0'} start={10} />
           </BackgroundContainer>
-          <Content />
+          <Content content={this.state.environment.content} />
         </div>
       </div>
     );

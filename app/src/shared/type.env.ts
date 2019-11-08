@@ -1,3 +1,13 @@
+export enum CardType {
+  IFRAME = 'IFRAME',
+  YOUTUBE = 'YOUTUBE',
+}
+
+export interface Card {
+  type: CardType;
+  url: string;
+}
+
 export interface Environment {
   development: boolean;
   touch: boolean;
@@ -15,4 +25,15 @@ export interface Environment {
   updateLock: boolean;
   appDataDir: string;
   userDataDir: string;
+  content: {
+    cards: Card[];
+  };
+}
+
+export interface AppEnvVariables {
+  CONTENT_CARD_COUNT: string;
+  CONTENT_CARD_1_TYPE: string;
+  CONTENT_CARD_1_URL: string;
+  CONTENT_CARD_2_TYPE: string;
+  CONTENT_CARD_2_URL: string;
 }

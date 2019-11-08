@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { Environment } from '../../shared/type.env';
+import { Card, CardType, Environment } from '../../shared/type.env';
 
 function parseEnvBoolean(
   env: string | undefined,
@@ -49,6 +49,43 @@ function parseEnvDevelopment(
   return !!(env === 'development');
 }
 
+function createCard(type?: CardType | string, url?: string): Card | undefined {
+  if (!type || !url) {
+    return;
+  }
+  if (type !== CardType.IFRAME && type !== CardType.YOUTUBE) {
+    return;
+  }
+  return {
+    type,
+    url,
+  };
+}
+
+function parseEnvCards(): Card[] {
+  const cards: Card[] = [];
+  const count = parseEnvInt(process.env.CONTENT_CARD_COUNT, 0);
+  if (count >= 1) {
+    const card1 = createCard(
+      process.env.CONTENT_CARD_1_TYPE,
+      process.env.CONTENT_CARD_1_URL
+    );
+    if (card1) {
+      cards.push(card1);
+    }
+  }
+  if (count >= 2) {
+    const card2 = createCard(
+      process.env.CONTENT_CARD_2_TYPE,
+      process.env.CONTENT_CARD_2_URL
+    );
+    if (card2) {
+      cards.push(card2);
+    }
+  }
+  return cards;
+}
+
 export function parseEnvironmentVariables(): Environment {
   const defaultConfig: Environment = {
     development: false,
@@ -67,6 +104,9 @@ export function parseEnvironmentVariables(): Environment {
     updateLock: false,
     appDataDir: '',
     userDataDir: '',
+    content: {
+      cards: [],
+    },
   };
 
   return {
@@ -113,5 +153,8 @@ export function parseEnvironmentVariables(): Environment {
       process.env.ELECTRON_USER_DATA_DIR,
       defaultConfig.userDataDir
     ),
+    content: {
+      cards: parseEnvCards(),
+    },
   };
 }

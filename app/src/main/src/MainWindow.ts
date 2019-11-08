@@ -18,9 +18,9 @@ export class MainWindow extends BrowserWindow {
     // this.isDevelopment = process.env.NODE_ENV !== 'production';
     // this.useDevTools = process.env.USE_DEV_TOOLD === '1' ? true : true;
 
-    if (this.environment.development && this.environment.devConsole) {
-      this.webContents.openDevTools();
-    }
+    // if ((this.environment.development && this.environment.devConsole) || true) {
+    this.webContents.openDevTools();
+    // }
 
     if (this.environment.development) {
       this.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
