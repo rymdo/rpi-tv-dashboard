@@ -1,18 +1,38 @@
+import './App.css';
+
+import { remote } from 'electron';
 import React, { Component } from 'react';
 
-import { TopBar } from './containers/TopBar';
-import { Content } from './containers/Content';
+import { Environment } from '../../shared/type.env';
 import { BackgroundContainer } from './components/Background/BackgroundContainer';
 import { YouTubeCard } from './components/Card/YouTubeCard';
+import { Content } from './containers/Content';
+import { TopBar } from './containers/TopBar';
 
-import './App.css';
-import ReactImg from './images/react.png';
+interface AppState {
+  ready: boolean;
+  environment?: Environment;
+}
 
-export class App extends Component {
-  spinner(): JSX.Element {
-    return <img src={ReactImg} alt="img" />;
+export class App extends Component<{}, AppState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      ready: false,
+      environment: undefined,
+    };
   }
+
+  componentDidMount(): void {
+    const currentWindow: any = remote.getCurrentWindow();
+    const environment: Environment = currentWindow.environment;
+    this.setState({ ready: true, environment });
+  }
+
   render(): JSX.Element {
+    if (!this.state.ready) {
+      return <div></div>;
+    }
     return (
       <div className="App">
         <div className="ContainerTopBar">

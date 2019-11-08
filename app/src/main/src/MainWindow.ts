@@ -2,19 +2,27 @@ import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
+import { Environment } from '../../shared/type.env';
+
 export class MainWindow extends BrowserWindow {
   private windowOpen = false;
-  private readonly isDevelopment: boolean;
-  constructor(options?: BrowserWindowConstructorOptions) {
+  private readonly environment: Environment;
+
+  constructor(
+    options: BrowserWindowConstructorOptions,
+    environment: Environment
+  ) {
     super(options);
+    this.environment = environment;
 
-    this.isDevelopment = process.env.NODE_ENV !== 'production';
+    // this.isDevelopment = process.env.NODE_ENV !== 'production';
+    // this.useDevTools = process.env.USE_DEV_TOOLD === '1' ? true : true;
 
-    if (this.isDevelopment) {
+    if (this.environment.development && this.environment.devConsole) {
       this.webContents.openDevTools();
     }
 
-    if (this.isDevelopment) {
+    if (this.environment.development) {
       this.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
     } else {
       this.loadURL(

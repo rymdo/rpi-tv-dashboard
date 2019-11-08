@@ -29,5 +29,10 @@ module.exports = {
     react: {
       version: 'latest',
     },
+    node: {
+      allowModules: ['electron'],
+      resolvePaths: [__dirname],
+      tryExtensions: ['.ts', '.tsx', '.json', '.node'],
+    },
   },
 };
